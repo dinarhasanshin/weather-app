@@ -39,8 +39,9 @@
 
 
 .counter span {
-  font-size: 80px;
+  font-size: 20px;
   font-weight: bold;
   display: flex;
   justify-content: center;
+  margin-bottom: 10px;
 }
