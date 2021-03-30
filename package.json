@@ -11,14 +11,17 @@
     "@types/node": "^12.0.0",
     "@types/react": "^16.9.53",
     "@types/react-dom": "^16.9.8",
+    "@types/uuid": "^8.3.0",
     "formik": "^2.2.6",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-redux": "^7.2.3",
     "react-scripts": "4.0.3",
+    "react-uuid": "^1.0.2",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
     "typescript": "^4.0.3",
+    "uniqid": "^5.3.0",
     "web-vitals": "^0.2.4",
     "workbox-background-sync": "^5.1.3",
     "workbox-broadcast-update": "^5.1.3",
@@ -60,6 +63,7 @@
     ]
   },
   "devDependencies": {
+    "@types/uniqid": "^5.3.0",
     "firebase": "8.3.1",
     "gh-pages": "^3.1.0"
   }
