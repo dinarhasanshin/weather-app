@@ -24,9 +24,6 @@ export const TodoItem: React.FC<TodoItemType> = ({ id, text, isChecked, deleteTo
 
     return (
         <>
-        {/* {
-            editMode === true ? :
-        } */}
             <div className={isChecked ? s.lined : ''}> {text}
                 <input type="checkbox" onChange={onChanged} checked={isChecked} />
                 <button onClick={() => { deleteTodoItem(id) }}>-</button>

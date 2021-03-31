@@ -30,7 +30,7 @@ const todo_reducer = (state = initialState, action: ActionTypes): InitialState =
         case 'DELETE_TODOS':
             return {
                 ...state,
-                todos_data: state.todos_data.filter((todo: TodosType) => todo.id !== action.payload.id)
+                todos_data: state.todos_data.filter((todo: TodosType) => todo.id !== action.payload)
             }
 
         default:
@@ -45,7 +45,7 @@ type ActionTypes = InferActionsType<typeof actionsReducer>
 export const actionsReducer = {
     setTodos: (payload: Array<TodosType>) => ({ type: 'SET_TODOS', payload } as const),
     addTodos: (payload: TodosType) => ({ type: 'ADD_TODOS', payload } as const),
-    deleteTodos: (payload: TodosType) => ({ type: 'DELETE_TODOS', payload } as const)
+    deleteTodos: (payload: string) => ({ type: 'DELETE_TODOS', payload } as const)
 }
 
 
@@ -64,9 +64,7 @@ export const getTodos = (): ThunkActionTypes => async (dispatch) => {
 //     }
 // }
 export const addTodos = (id: string, text: string, isChecked: boolean = false): ThunkActionTypes => async (dispatch) => {
-    debugger
     let data = await todoAPI.addTodo(id, {text, isChecked})
-    debugger
     if (data === 'Success') {
         // dispatch(actionsReducer.addTodos({ id, data: { text, isChecked } }))
         dispatch(getTodos())
@@ -84,7 +82,7 @@ export const deleteTodos = (id: string): ThunkActionTypes => async (dispatch) =>
 
     let data = await todoAPI.deleteTodo(id)
     if (data === 'Success') {
-        // dispatch(actionsReducer.deleteTodos({ id, text, isChecked }))
+        dispatch(actionsReducer.deleteTodos(id))
     }
 }
 
