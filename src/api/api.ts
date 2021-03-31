@@ -17,6 +17,7 @@ const config = {
   let firestore = firebase.firestore()
 
 export const db = {
+    TodosCollections: firestore.collection("todosCollection").doc("JvXr2hWdg4eCIthMJ1Rs").collection("todos"),
     TodosPath: firestore.doc("userBooks/library"),
     TodoAddArray: firebase.firestore.FieldValue
 }

@@ -53,7 +53,7 @@ type ThunkActionTypes = BaseThunkType<ActionTypes>
 
 export const getTodos = (): ThunkActionTypes => async (dispatch) => {
     let data = await todoAPI.getTodo()
-    if (data !== `Error`) {
+    if (data.length !== 0) {
         dispatch(actionsReducer.setTodos(data))
     }
 }
@@ -64,18 +64,27 @@ export const getTodos = (): ThunkActionTypes => async (dispatch) => {
 //     }
 // }
 export const addTodos = (id: string, text: string, isChecked: boolean = false): ThunkActionTypes => async (dispatch) => {
-    
-    let data = await todoAPI.addTodo(id, text, isChecked)
+    debugger
+    let data = await todoAPI.addTodo(id, {text, isChecked})
+    debugger
     if (data === 'Success') {
-        dispatch(actionsReducer.addTodos({ id, text, isChecked }))
+        // dispatch(actionsReducer.addTodos({ id, data: { text, isChecked } }))
+        dispatch(getTodos())
     }
 }
 
-export const deleteTodos = (id: string, text: string, isChecked: boolean): ThunkActionTypes => async (dispatch) => {
-
-    let data = await todoAPI.deleteTodo(id, text, isChecked)
+export const updateTodos = (id: string, text: string, isChecked: boolean = false): ThunkActionTypes => async (dispatch) => {
+    let data = await todoAPI.updateTodo(id, text, isChecked)
     if (data === 'Success') {
-        dispatch(actionsReducer.deleteTodos({ id, text, isChecked }))
+        dispatch(getTodos())
+    }
+}
+
+export const deleteTodos = (id: string): ThunkActionTypes => async (dispatch) => {
+
+    let data = await todoAPI.deleteTodo(id)
+    if (data === 'Success') {
+        // dispatch(actionsReducer.deleteTodos({ id, text, isChecked }))
     }
 }
 
